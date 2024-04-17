@@ -39,3 +39,5 @@ public class MoonshotAiImageGenerationMetadata implements ImageGenerationMetadat
     public int hashCode() {
         return Objects.hash(revisedPrompt);
     }
+
+}
