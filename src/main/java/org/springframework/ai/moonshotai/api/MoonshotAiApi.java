@@ -449,16 +449,16 @@ public class MoonshotAiApi {
      * Models:
      * </p>
      * <ul>
-     * <li><b>GLM_3_TURBO</b> - chatglm3</li>
-     * <li><b>GLM_4</b> - chatglm4</li>
-     * <li><b>GLM_4V</b> - chatglm4v</li>
+     * <li><b>moonshot-v1-8k</b> - 它是一个长度为 8k 的模型，适用于生成短文本</li>
+     * <li><b>moonshot-v1-32k</b> - 它是一个长度为 32k 的模型，适用于生成长文本</li>
+     * <li><b>moonshot-v1-128k</b> - 它是一个长度为 128k 的模型，适用于生成超长文本</li>
      * </ul>
      */
     public enum ChatModel {
 
-        GLM_3_TURBO("glm-3-turbo"),
-        GLM_4("glm-4"),
-        GLM_4V("glm-4v");
+        MOONSHOT_V1_8K("moonshot-v1-8k"),
+        MOONSHOT_V1_32K("moonshot-v1-32k"),
+        MOONSHOT_V1_128K("moonshot-v1-128k");
 
         private final String value;
 

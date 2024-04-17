@@ -26,7 +26,9 @@ public class MoonshotAiImageClient implements ImageClient {
     public final RetryTemplate retryTemplate;
 
     public MoonshotAiImageClient(MoonshotAiImageApi moonshotAiImageApi) {
-        this(moonshotAiImageApi, MoonshotAiImageOptions.builder().build(), RetryUtils.DEFAULT_RETRY_TEMPLATE);
+        this(moonshotAiImageApi, MoonshotAiImageOptions.builder()
+                .withModel(MoonshotAiImageApi.DEFAULT_IMAGE_MODEL)
+                .build(), RetryUtils.DEFAULT_RETRY_TEMPLATE);
     }
 
     public MoonshotAiImageClient(MoonshotAiImageApi moonshotAiImageApi, MoonshotAiImageOptions defaultOptions,
@@ -112,7 +114,7 @@ public class MoonshotAiImageClient implements ImageClient {
             if (runtimeImageOptions.getHeight() != null) {
                 moonshotAiImageOptionsBuilder.withHeight(runtimeImageOptions.getHeight());
             }
-            // Handle MoonshotAI specific image options
+            // Handle Moonshot AI specific image options
             if (runtimeImageOptions instanceof MoonshotAiImageOptions) {
                 MoonshotAiImageOptions runtimeMoonshotAiImageOptions = (MoonshotAiImageOptions) runtimeImageOptions;
                 if (runtimeMoonshotAiImageOptions.getQuality() != null) {

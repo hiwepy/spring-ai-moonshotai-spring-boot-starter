@@ -1,9 +1,6 @@
 package org.springframework.ai.moonshotai.metadata;
 
 import org.springframework.ai.image.ImageGenerationMetadata;
-import org.springframework.ai.image.ImageResponseMetadata;
-import org.springframework.ai.moonshotai.api.MoonshotAiImageApi;
-import org.springframework.util.Assert;
 
 import java.util.Objects;
 

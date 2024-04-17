@@ -1,5 +1,6 @@
 package org.springframework.ai.moonshotai.autoconfigure;
 
+import org.springframework.ai.moonshotai.api.ApiUtils;
 import org.springframework.ai.moonshotai.api.MoonshotAiApi;
 import org.springframework.ai.moonshotai.api.MoonshotAiChatOptions;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -10,27 +11,21 @@ public class MoonshotAiChatProperties extends MoonshotAiParentProperties {
 
     public static final String CONFIG_PREFIX = "spring.ai.moonshotai.chat";
 
-    public static final String DEFAULT_CHAT_MODEL = MoonshotAiApi.ChatModel.GLM_3_TURBO.getValue();
-
-    private static final Float DEFAULT_TEMPERATURE = 0.95f;
-
-    private static final Float DEFAULT_TOP_P = 1.0f;
-
     /**
-     * Enable ZhipuAi chat client.
+     * Enable Moonshot AI chat client.
      */
     private boolean enabled = true;
 
     /**
-     * Client lever ZhipuAi options. Use this property to configure generative temperature,
+     * Client lever Moonshot AI options. Use this property to configure generative temperature,
      * topK and topP and alike parameters. The null values are ignored defaulting to the
      * generative's defaults.
      */
     @NestedConfigurationProperty
     private MoonshotAiChatOptions options = MoonshotAiChatOptions.builder()
-            .withModel(DEFAULT_CHAT_MODEL)
-            .withTemperature(DEFAULT_TEMPERATURE)
-            .withTopP(DEFAULT_TOP_P)
+            .withModel(MoonshotAiApi.ChatModel.MOONSHOT_V1_8K.getValue())
+            .withTemperature(ApiUtils.DEFAULT_TEMPERATURE)
+            .withTopP(ApiUtils.DEFAULT_TOP_P)
             .build();
 
     public MoonshotAiChatOptions getOptions() {

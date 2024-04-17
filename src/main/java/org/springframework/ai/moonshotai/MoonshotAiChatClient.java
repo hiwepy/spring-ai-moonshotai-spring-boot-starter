@@ -12,9 +12,10 @@ import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.model.ModelOptionsUtils;
 import org.springframework.ai.model.function.AbstractFunctionCallSupport;
 import org.springframework.ai.model.function.FunctionCallbackContext;
-import org.springframework.ai.retry.RetryUtils;
+import org.springframework.ai.moonshotai.api.ApiUtils;
 import org.springframework.ai.moonshotai.api.MoonshotAiApi;
 import org.springframework.ai.moonshotai.api.MoonshotAiChatOptions;
+import org.springframework.ai.retry.RetryUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.util.Assert;
@@ -41,10 +42,10 @@ public class MoonshotAiChatClient
 
     public MoonshotAiChatClient(MoonshotAiApi moonshotAiApi) {
         this(moonshotAiApi, MoonshotAiChatOptions.builder()
-                        .withTemperature(0.95f)
-                        .withTopP(0.7f)
-                        .withModel(MoonshotAiApi.ChatModel.GLM_3_TURBO.getValue())
-                        .build());
+                    .withModel(MoonshotAiApi.ChatModel.MOONSHOT_V1_8K.getValue())
+                    .withTemperature(ApiUtils.DEFAULT_TEMPERATURE)
+                    .withTopP(ApiUtils.DEFAULT_TOP_P)
+                    .build());
     }
 
     public MoonshotAiChatClient(MoonshotAiApi moonshotAiApi, MoonshotAiChatOptions options) {
@@ -54,7 +55,7 @@ public class MoonshotAiChatClient
     public MoonshotAiChatClient(MoonshotAiApi moonshotAiApi, MoonshotAiChatOptions options,
                                 FunctionCallbackContext functionCallbackContext, RetryTemplate retryTemplate) {
         super(functionCallbackContext);
-        Assert.notNull(moonshotAiApi, "ZhipuAiApi must not be null");
+        Assert.notNull(moonshotAiApi, "MoonshotAiApi must not be null");
         Assert.notNull(options, "Options must not be null");
         Assert.notNull(retryTemplate, "RetryTemplate must not be null");
         this.moonshotAiApi = moonshotAiApi;

@@ -6,9 +6,9 @@ import org.springframework.ai.document.Document;
 import org.springframework.ai.document.MetadataMode;
 import org.springframework.ai.embedding.*;
 import org.springframework.ai.model.ModelOptionsUtils;
-import org.springframework.ai.retry.RetryUtils;
 import org.springframework.ai.moonshotai.api.MoonshotAiApi;
 import org.springframework.ai.moonshotai.api.MoonshotAiEmbeddingOptions;
+import org.springframework.ai.retry.RetryUtils;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
@@ -46,7 +46,7 @@ public class MoonshotAiEmbeddingClient extends AbstractEmbeddingClient {
 
     public MoonshotAiEmbeddingClient(MoonshotAiApi moonshotAiApi, MetadataMode metadataMode,
                                      MoonshotAiEmbeddingOptions options, RetryTemplate retryTemplate) {
-        Assert.notNull(moonshotAiApi, "ZhipuAiApi must not be null");
+        Assert.notNull(moonshotAiApi, "MoonshotAiApi must not be null");
         Assert.notNull(metadataMode, "metadataMode must not be null");
         Assert.notNull(options, "options must not be null");
         Assert.notNull(retryTemplate, "retryTemplate must not be null");
@@ -69,7 +69,7 @@ public class MoonshotAiEmbeddingClient extends AbstractEmbeddingClient {
 
             Assert.notEmpty(request.getInstructions(), "At least one text is required!");
             if (request.getInstructions().size() != 1) {
-                logger.warn( "ZhipuAi Embedding does not support batch embedding. Will make multiple API calls to embed(Document)");
+                logger.warn( "Moonshot AI Embedding does not support batch embedding. Will make multiple API calls to embed(Document)");
             }
             var inputContent = CollectionUtils.firstElement(request.getInstructions());
             var apiRequest = (this.defaultOptions != null)

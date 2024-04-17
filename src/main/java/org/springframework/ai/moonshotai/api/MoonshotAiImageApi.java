@@ -17,41 +17,41 @@ public class MoonshotAiImageApi {
     private final RestClient restClient;
 
     /**
-     * Create a new MoonshotAI Image api with base URL set to https://api.moonshot.cn
-     * @param moonshotAiToken MoonshotAI apiKey.
+     * Create a new Moonshot AI Image api with base URL set to https://api.moonshot.cn
+     * @param apiKey Moonshot AI apiKey.
      */
-    public MoonshotAiImageApi(String moonshotAiToken) {
-        this(ApiUtils.DEFAULT_BASE_URL, moonshotAiToken, RestClient.builder());
+    public MoonshotAiImageApi(String apiKey) {
+        this(ApiUtils.DEFAULT_BASE_URL, apiKey, RestClient.builder());
     }
 
     /**
-     * Create a new MoonshotAI Image API with the provided base URL.
-     * @param baseUrl the base URL for the MoonshotAI API.
-     * @param moonshotAiToken MoonshotAI apiKey.
+     * Create a new Moonshot AI Image API with the provided base URL.
+     * @param baseUrl the base URL for the Moonshot AI API.
+     * @param apiKey Moonshot AI apiKey.
      * @param restClientBuilder the rest client builder to use.
      */
-    public MoonshotAiImageApi(String baseUrl, String moonshotAiToken, RestClient.Builder restClientBuilder) {
-        this(baseUrl, moonshotAiToken, restClientBuilder, RetryUtils.DEFAULT_RESPONSE_ERROR_HANDLER);
+    public MoonshotAiImageApi(String baseUrl, String apiKey, RestClient.Builder restClientBuilder) {
+        this(baseUrl, apiKey, restClientBuilder, RetryUtils.DEFAULT_RESPONSE_ERROR_HANDLER);
     }
 
     /**
-     * Create a new MoonshotAI Image API with the provided base URL.
-     * @param baseUrl the base URL for the MoonshotAI API.
-     * @param moonshotAiToken MoonshotAI apiKey.
+     * Create a new Moonshot AI Image API with the provided base URL.
+     * @param baseUrl the base URL for the Moonshot AI API.
+     * @param apiKey Moonshot AI apiKey.
      * @param restClientBuilder the rest client builder to use.
      * @param responseErrorHandler the response error handler to use.
      */
-    public MoonshotAiImageApi(String baseUrl, String moonshotAiToken, RestClient.Builder restClientBuilder,
+    public MoonshotAiImageApi(String baseUrl, String apiKey, RestClient.Builder restClientBuilder,
                           ResponseErrorHandler responseErrorHandler) {
 
         this.restClient = restClientBuilder.baseUrl(baseUrl)
-                .defaultHeaders(ApiUtils.getJsonContentHeaders(moonshotAiToken))
+                .defaultHeaders(ApiUtils.getJsonContentHeaders(apiKey))
                 .defaultStatusHandler(responseErrorHandler)
                 .build();
     }
 
     /**
-     * MoonshotAI Image API model.
+     * Moonshot AI Image API model.
      * <a href="https://platform.openai.com/docs/models/dall-e">DALL·E</a>
      */
     public enum ImageModel {

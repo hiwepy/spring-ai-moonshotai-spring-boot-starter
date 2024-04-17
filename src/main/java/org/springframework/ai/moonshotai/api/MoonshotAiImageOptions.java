@@ -21,7 +21,7 @@ public class MoonshotAiImageOptions implements ImageOptions {
      * The model to use for image generation.
      */
     @JsonProperty("model")
-    private String model = MoonshotAiImageApi.DEFAULT_IMAGE_MODEL;
+    private String model;
 
     /**
      * The width of the generated images. Must be one of 256, 512, or 1024 for dall-e-2.
@@ -67,7 +67,7 @@ public class MoonshotAiImageOptions implements ImageOptions {
     private String style;
 
     /**
-     * A unique identifier representing your end-user, which can help MoonshotAI to monitor
+     * A unique identifier representing your end-user, which can help Moonshot AI to monitor
      * and detect abuse.
      */
     @JsonProperty("user")

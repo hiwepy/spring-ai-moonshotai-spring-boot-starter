@@ -6,8 +6,10 @@ import org.springframework.ai.model.function.FunctionCallback;
 import org.springframework.ai.model.function.FunctionCallbackContext;
 import org.springframework.ai.moonshotai.MoonshotAiChatClient;
 import org.springframework.ai.moonshotai.MoonshotAiEmbeddingClient;
+import org.springframework.ai.moonshotai.MoonshotAiFileClient;
 import org.springframework.ai.moonshotai.MoonshotAiImageClient;
 import org.springframework.ai.moonshotai.api.MoonshotAiApi;
+import org.springframework.ai.moonshotai.api.MoonshotAiFileApi;
 import org.springframework.ai.moonshotai.api.MoonshotAiImageApi;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -98,6 +100,21 @@ public class MoonshotAiAutoConfiguration {
         var moonshotAiImageApi = new MoonshotAiImageApi(baseUrl, apiKey, restClientBuilder, responseErrorHandler);
 
         return new MoonshotAiImageClient(moonshotAiImageApi, imageProperties.getOptions(), retryTemplate);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public MoonshotAiFileClient moonshotAiFileClient(MoonshotAiConnectionProperties commonProperties,
+                                                             RestClient.Builder restClientBuilder,
+                                                             ResponseErrorHandler responseErrorHandler,
+                                                             RetryTemplate retryTemplate) {
+
+        Assert.hasText(commonProperties.getApiKey(), "Moonshot AI API key must be set");
+        Assert.hasText(commonProperties.getBaseUrl(), "Moonshot AI base URL must be set");
+
+        var moonshotAiFileApi = new MoonshotAiFileApi(commonProperties.getBaseUrl(), commonProperties.getApiKey(), restClientBuilder, responseErrorHandler);
+
+        return new MoonshotAiFileClient(moonshotAiFileApi, retryTemplate);
     }
 
     @Bean
