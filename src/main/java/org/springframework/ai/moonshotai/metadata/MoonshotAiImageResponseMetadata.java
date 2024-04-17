@@ -26,7 +26,7 @@ public class MoonshotAiImageResponseMetadata implements ImageResponseMetadata {
 
     @Override
     public String toString() {
-        return "OpenAiImageResponseMetadata{" + "created=" + created + '}';
+        return "MoonshotAiImageResponseMetadata{" + "created=" + created + '}';
     }
 
     @Override

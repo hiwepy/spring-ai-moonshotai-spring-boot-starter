@@ -52,7 +52,7 @@ public class MoonshotAiImageApi {
 
     /**
      * Moonshot AI Image API model.
-     * <a href="https://platform.openai.com/docs/models/dall-e">DALL·E</a>
+     * <a href="https://platform.MoonshotAi.com/docs/models/dall-e">DALL·E</a>
      */
     public enum ImageModel {
 

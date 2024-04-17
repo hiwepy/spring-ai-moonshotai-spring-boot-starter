@@ -18,7 +18,7 @@ public class MoonshotAiImageGenerationMetadata implements ImageGenerationMetadat
 
     @Override
     public String toString() {
-        return "OpenAiImageGenerationMetadata{" + "revisedPrompt='" + revisedPrompt + '\'' + '}';
+        return "MoonshotAiImageGenerationMetadata{" + "revisedPrompt='" + revisedPrompt + '\'' + '}';
     }
 
     @Override
