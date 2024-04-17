@@ -27,7 +27,6 @@ import java.util.function.Predicate;
 public class MoonshotAiApi {
 
     private static final Logger logger = LoggerFactory.getLogger(MoonshotAiApi.class);
-    public final static String DEFAULT_BASE_URL = "https://api.moonshot.cn";
     private static final Predicate<String> SSE_DONE_PREDICATE = "[DONE]"::equals;
     private static final String REQUEST_BODY_NULL_ERROR = "The request body can not be null.";
 
@@ -37,16 +36,16 @@ public class MoonshotAiApi {
 
     /**
      * Create a new client api with DEFAULT_BASE_URL
-     * @param apiKey ZhipuAI api Key.
+     * @param apiKey Moonshot AI api Key.
      */
     public MoonshotAiApi(String apiKey) {
-        this(DEFAULT_BASE_URL, apiKey);
+        this(ApiUtils.DEFAULT_BASE_URL, apiKey);
     }
 
     /**
      * Create a new client api.
      * @param baseUrl api base URL.
-     * @param apiKey ZhipuAI api Key.
+     * @param apiKey Moonshot AI api Key.
      */
     public MoonshotAiApi(String baseUrl, String apiKey) {
         this(baseUrl, apiKey, RestClient.builder(), RetryUtils.DEFAULT_RESPONSE_ERROR_HANDLER);
@@ -55,7 +54,7 @@ public class MoonshotAiApi {
     /**
      * Create a new client api.
      * @param baseUrl api base URL.
-     * @param apiKey ZhipuAI api Key.
+     * @param apiKey Moonshot AI api Key.
      * @param restClientBuilder RestClient builder.
      * @param responseErrorHandler Response error handler.
      */
@@ -505,7 +504,7 @@ public class MoonshotAiApi {
         Assert.isTrue(!chatRequest.stream(), "Request must set the steam property to false.");
 
         return this.restClient.post()
-                .uri("/v4/chat/completions")
+                .uri("/v1/chat/completions")
                 .body(chatRequest)
                 .retrieve()
                 .toEntity(MoonshotAiApi.ChatCompletion.class);
@@ -527,7 +526,7 @@ public class MoonshotAiApi {
         AtomicBoolean isInsideTool = new AtomicBoolean(false);
 
         return this.webClient.post()
-                .uri("/v4/chat/completions")
+                .uri("/v1/chat/completions")
                 .body(Mono.just(chatRequest), ChatCompletionRequest.class)
                 .retrieve()
                 .bodyToFlux(String.class)

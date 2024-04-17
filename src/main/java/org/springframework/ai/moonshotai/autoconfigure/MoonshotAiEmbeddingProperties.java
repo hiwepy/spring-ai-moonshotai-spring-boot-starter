@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 @ConfigurationProperties(MoonshotAiEmbeddingProperties.CONFIG_PREFIX)
-public class MoonshotAiEmbeddingProperties {
+public class MoonshotAiEmbeddingProperties extends MoonshotAiParentProperties {
 
     public static final String CONFIG_PREFIX = "spring.ai.moonshotai.embedding";
 

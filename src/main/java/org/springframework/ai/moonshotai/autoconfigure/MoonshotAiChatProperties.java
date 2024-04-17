@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 @ConfigurationProperties(MoonshotAiChatProperties.CONFIG_PREFIX)
-public class MoonshotAiChatProperties {
+public class MoonshotAiChatProperties extends MoonshotAiParentProperties {
 
     public static final String CONFIG_PREFIX = "spring.ai.moonshotai.chat";
 
