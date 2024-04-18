@@ -86,7 +86,7 @@ public class MoonshotAiChatClient
                             .withGenerationMetadata(ChatGenerationMetadata.from(choice.finishReason().name(), null)))
                     .toList();
 
-            return new ChatResponse(generations, new MoonshotAiChatResponseMetadata(chatCompletion.usage()));
+            return new ChatResponse(generations, MoonshotAiChatResponseMetadata.from(chatCompletion));
         });
     }
 
@@ -137,7 +137,7 @@ public class MoonshotAiChatClient
                     }
                     return generation;
                 }).toList();
-                return new ChatResponse(generations, new MoonshotAiChatResponseMetadata(chatCompletion.usage()));
+                return new ChatResponse(generations, MoonshotAiChatResponseMetadata.from(chatCompletion));
             });
         });
     }

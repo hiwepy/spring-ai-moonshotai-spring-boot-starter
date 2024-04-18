@@ -1,38 +1,36 @@
 package org.springframework.ai.moonshotai.metadata;
 
 import org.springframework.ai.chat.metadata.ChatResponseMetadata;
+import org.springframework.ai.chat.metadata.EmptyUsage;
 import org.springframework.ai.chat.metadata.Usage;
 import org.springframework.ai.moonshotai.api.MoonshotAiApi;
-
-import java.util.Optional;
+import org.springframework.util.Assert;
 
 public class MoonshotAiChatResponseMetadata implements ChatResponseMetadata {
 
-    private final MoonshotAiApi.Usage usage;
+    public static MoonshotAiChatResponseMetadata from(MoonshotAiApi.ChatCompletion chatCompletion) {
+        Assert.notNull(chatCompletion, "MoonshotAI ChatCompletion must not be null");
+        MoonshotAiUsage usage = MoonshotAiUsage.from(chatCompletion.usage());
+        MoonshotAiChatResponseMetadata chatResponseMetadata = new MoonshotAiChatResponseMetadata(chatCompletion.id(), usage);
+        return chatResponseMetadata;
+    }
 
-    public MoonshotAiChatResponseMetadata(MoonshotAiApi.Usage usage) {
+    private final String id;
+    private final Usage usage;
+
+    public MoonshotAiChatResponseMetadata(String id, MoonshotAiUsage usage) {
+        this.id = id;
         this.usage = usage;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     @Override
     public Usage getUsage() {
-        return new Usage() {
-
-            @Override
-            public Long getPromptTokens() {
-                return Optional.ofNullable(usage.promptTokens()).orElse(-1).longValue();
-            }
-
-            @Override
-            public Long getGenerationTokens() {
-                return Optional.ofNullable(usage.completionTokens()).orElse(-1).longValue();
-            }
-
-            @Override
-            public Long getTotalTokens() {
-                return Optional.ofNullable(usage.totalTokens()).orElse(-1).longValue();
-            }
-        };
+        Usage usage = this.usage;
+        return usage != null ? usage : new EmptyUsage();
     }
 
 }
