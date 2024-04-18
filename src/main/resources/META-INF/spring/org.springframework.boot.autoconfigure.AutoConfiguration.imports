@@ -1,1 +1,1 @@
-moonshotai.autoconfigure.MoonshotAiAutoConfiguration
+org.springframework.ai.moonshotai.autoconfigure.MoonshotAiAutoConfiguration
