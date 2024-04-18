@@ -15,6 +15,7 @@ import org.springframework.ai.model.function.FunctionCallbackContext;
 import org.springframework.ai.moonshotai.api.ApiUtils;
 import org.springframework.ai.moonshotai.api.MoonshotAiApi;
 import org.springframework.ai.moonshotai.api.MoonshotAiChatOptions;
+import org.springframework.ai.moonshotai.metadata.MoonshotAiChatResponseMetadata;
 import org.springframework.ai.retry.RetryUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.retry.support.RetryTemplate;
@@ -85,7 +86,7 @@ public class MoonshotAiChatClient
                             .withGenerationMetadata(ChatGenerationMetadata.from(choice.finishReason().name(), null)))
                     .toList();
 
-            return new ChatResponse(generations);
+            return new ChatResponse(generations, new MoonshotAiChatResponseMetadata(chatCompletion.usage()));
         });
     }
 
@@ -136,7 +137,7 @@ public class MoonshotAiChatClient
                     }
                     return generation;
                 }).toList();
-                return new ChatResponse(generations);
+                return new ChatResponse(generations, new MoonshotAiChatResponseMetadata(chatCompletion.usage()));
             });
         });
     }
