@@ -12,7 +12,7 @@ import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.model.ModelOptionsUtils;
 import org.springframework.ai.model.function.AbstractFunctionCallSupport;
 import org.springframework.ai.model.function.FunctionCallbackContext;
-import org.springframework.ai.moonshotai.api.ApiUtils;
+import org.springframework.ai.moonshotai.util.ApiUtils;
 import org.springframework.ai.moonshotai.api.MoonshotAiApi;
 import org.springframework.ai.moonshotai.api.MoonshotAiChatOptions;
 import org.springframework.ai.moonshotai.metadata.MoonshotAiChatResponseMetadata;

@@ -1,6 +1,6 @@
 package org.springframework.ai.moonshotai.autoconfigure;
 
-import org.springframework.ai.moonshotai.api.ApiUtils;
+import org.springframework.ai.moonshotai.util.ApiUtils;
 
 class MoonshotAiParentProperties {
 

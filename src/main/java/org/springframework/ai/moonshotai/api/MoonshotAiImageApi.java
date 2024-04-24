@@ -2,6 +2,7 @@ package org.springframework.ai.moonshotai.api;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.ai.moonshotai.util.ApiUtils;
 import org.springframework.ai.retry.RetryUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
