@@ -39,7 +39,7 @@ Moonshot的文本生成模型（指moonshot-v1）是训练用于理解自然语�
 
 ### Sample
 
-使用示例请参见 [Spring AI Examples](https://github.com/TeachingAI/spring-ai-examples)
+使用示例请参见 [Spring AI Examples](https://github.com/teachingai/spring-ai-examples)
 
 ### License
 
